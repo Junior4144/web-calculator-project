@@ -21,6 +21,11 @@ body{
     height:100px;
     font-size: 48px;
 }
+.preview{
+    display:flex;
+    justify-content: end;
+    height:18px;
+}
 .button-container{
     width:400px;
     display:flex;
