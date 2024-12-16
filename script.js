@@ -65,18 +65,28 @@ let displaySelection = false;
 let firstSelection = true;
 let secondSelection = true;
 
-
+let withoutSecond = true;
+let equalsReset = false;
 
 equalsButton.addEventListener('click', () =>{
+    //two version with operationSelection
+    if(firstNumberSelection){
+        firstNumber = display.textContent;
+        preview.textContent = firstNumber + " =";
 
-    if(!operatorSelection){
+        equalsReset = true;
+        return
+    }
+    
+    if(!displaySelection){
         secondNumber = display.textContent;
     }
+    
     
     preview.textContent = firstNumber + " + "  + secondNumber + " =";
     secondNumberSelection = false;
     displaySelection = true;
-    operatorSelection = false;
+    
     operate();
     console.log(`--------------------------------`)
     console.log(`first: ${firstNumberSelection}`)
@@ -86,7 +96,7 @@ equalsButton.addEventListener('click', () =>{
     console.log(`--------------------------------`)
 });
 sevenButton.addEventListener('click', () =>{
-
+    displaySelection = false;
     if(operatorSelection){
         display.textContent = '';
     }
@@ -108,16 +118,21 @@ sevenButton.addEventListener('click', () =>{
     }
 
     operatorSelection = false;
+    if(equalsReset){
+        display.textContent = ''
+        equalsReset = false;
+    }
     display.textContent += 7;
     console.log(`--------------------------------`)
     console.log(`first: ${firstNumberSelection}`)
     console.log(`operator: ${operatorSelection}`)
     console.log(`second: ${secondNumberSelection}`)
+    console.log(`display: ${displaySelection}`)
     console.log(`--------------------------------`)
 
 });
 addButton.addEventListener('click', () =>{
-    
+    displaySelection = false;
     //firstNum = null
     if(firstNumberSelection){ // if firstNumberSelection is true -> 
         firstNumber = display.textContent;
@@ -147,6 +162,7 @@ addButton.addEventListener('click', () =>{
     console.log(`first: ${firstNumberSelection}`)
     console.log(`operator: ${operatorSelection}`)
     console.log(`second: ${secondNumberSelection}`)
+    console.log(`display: ${displaySelection}`)
     console.log(`--------------------------------`)
 
 });
