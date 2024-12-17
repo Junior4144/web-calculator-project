@@ -69,7 +69,6 @@ const resetButton = document.querySelector('.reset-btn');
 const interchangeButton = document.querySelector('.interChange-btn');
 const decimalPointButton = document.querySelector('.decimal-btn');
 
-
 const zeroButton = document.querySelector('.zero-btn');
 const oneButton = document.querySelector('.one-btn');
 const twoButton = document.querySelector('.two-btn');
@@ -86,8 +85,6 @@ const subtractButton = document.querySelector('.subtract-btn');
 const multiplyButton = document.querySelector('.multiply-btn');
 const divideButton = document.querySelector('.divide-btn');
 
-
-
 let firstNumberSelection = true;
 let operatorSelection = false;
 let secondNumberSelection = false;
@@ -98,10 +95,11 @@ let secondSelection = true;
 
 let withoutSecond = true;
 let equalsReset = false;
+let lengthLimit = false;
 
 clearButton.addEventListener('click', () => {
     //clears display
-    display.textContent = '';
+    display.textContent = '0';
 });
 resetButton.addEventListener('click', () => {
     //resets display/ preview / all variables as if it was new
@@ -118,6 +116,8 @@ resetButton.addEventListener('click', () => {
     secondSelection = true;
     withoutSecond = true;
     equalsReset = false;
+    lengthLimit = false;
+
 });
 delButton.addEventListener('click', () => {
     //remove one number from display
@@ -125,6 +125,26 @@ delButton.addEventListener('click', () => {
     display.textContent = x.substring(0, x.length-1);
     if(display.textContent == ''){
         display.textContent = "0"
+    }
+});
+interchangeButton.addEventListener('click', () => {
+    //remove one number from display
+    let x = display.textContent;
+    if (x.charAt(0) != '-'){
+        //add a negative symbol to the front of text
+        display.textContent = `-${display.textContent}`;
+    }
+    else{
+        //removes a the negative symbol in front of text
+        display.textContent = x.substring(1);
+    }
+});
+decimalPointButton.addEventListener('click', () =>{
+    //adds a decimal point
+    let x = display.textContent;
+
+    if (!x.includes('.')){
+        display.textContent = `${x}.`
     }
 });
 
@@ -324,6 +344,9 @@ zeroButton.addEventListener('click', () =>{
 
 oneButton.addEventListener('click', () =>{
     displaySelection = false;
+    if(lengthLimit){
+        return
+    }
     if(operatorSelection){
         display.textContent = '';
     }
@@ -360,6 +383,9 @@ oneButton.addEventListener('click', () =>{
 });
 twoButton.addEventListener('click', () =>{
     displaySelection = false;
+    if(lengthLimit){
+        return
+    }
     if(operatorSelection){
         display.textContent = '';
     }
@@ -396,6 +422,9 @@ twoButton.addEventListener('click', () =>{
 });
 threeButton.addEventListener('click', () =>{
     displaySelection = false;
+    if(lengthLimit){
+        return
+    }
     if(operatorSelection){
         display.textContent = '';
     }
@@ -432,6 +461,9 @@ threeButton.addEventListener('click', () =>{
 });
 fourButton.addEventListener('click', () =>{
     displaySelection = false;
+    if(lengthLimit){
+        return
+    }
     if(operatorSelection){
         display.textContent = '';
     }
@@ -468,6 +500,9 @@ fourButton.addEventListener('click', () =>{
 });
 fiveButton.addEventListener('click', () =>{
     displaySelection = false;
+    if(lengthLimit){
+        return
+    }
     if(operatorSelection){
         display.textContent = '';
     }
@@ -504,6 +539,9 @@ fiveButton.addEventListener('click', () =>{
 });
 sixButton.addEventListener('click', () =>{
     displaySelection = false;
+    if(lengthLimit){
+        return
+    }
     if(operatorSelection){
         display.textContent = '';
     }
@@ -540,6 +578,9 @@ sixButton.addEventListener('click', () =>{
 });
 sevenButton.addEventListener('click', () =>{
     displaySelection = false;
+    if(lengthLimit){
+        return
+    }
     if(operatorSelection){
         display.textContent = '';
     }
@@ -576,6 +617,9 @@ sevenButton.addEventListener('click', () =>{
 });
 eightButton.addEventListener('click', () =>{
     displaySelection = false;
+    if(lengthLimit){
+        return
+    }
     if(operatorSelection){
         display.textContent = '';
     }
@@ -612,6 +656,9 @@ eightButton.addEventListener('click', () =>{
 });
 nineButton.addEventListener('click', () =>{
     displaySelection = false;
+    if(lengthLimit){
+        return
+    }
     if(operatorSelection){
         display.textContent = '';
     }
@@ -648,3 +695,94 @@ nineButton.addEventListener('click', () =>{
 });
 
 
+const allBtn = document.querySelectorAll('button');
+
+allBtn.forEach((current) =>{
+    current.addEventListener('click', () =>{
+        console.log(display.textContent.length)
+        if (display.textContent.length > 10){
+            lengthLimit = true;
+            
+        }
+        else{
+            lengthLimit = false;
+        }
+    })
+    current.addEventListener('mousedown', () =>{
+        current.style.backgroundColor = "grey";
+    });
+    current.addEventListener('mouseup', () =>{
+        current.style.backgroundColor = "lightgrey";
+    });
+
+});
+
+
+document.addEventListener('keydown', ({key}) =>{
+    if(key == '/'){
+        const event = new Event('click');
+        divideButton.dispatchEvent(event)
+    }
+
+    if(key == 'Backspace' || key == 'Delete'){
+        const event = new Event('click');
+        delButton.dispatchEvent(event)
+    }
+    if(key == '+'){
+        const event = new Event('click');
+        addButton.dispatchEvent(event)
+    }
+    if(key == '-'){
+        const event = new Event('click');
+        subtractButton.dispatchEvent(event)
+    }
+    if(key == '*'){
+        const event = new Event('click');
+        multiplyButton.dispatchEvent(event)
+    }
+    if(key == '.'){
+        const event = new Event('click');
+        decimalPointButton.dispatchEvent(event)
+    }
+    if(key == '0'){
+        const event = new Event('click');
+        zeroButton.dispatchEvent(event)
+    }
+    if(key == '1'){
+        const event = new Event('click');
+        oneButton.dispatchEvent(event)
+    }
+    if(key == '2'){
+        const event = new Event('click');
+        twoButton.dispatchEvent(event)
+    }
+    if(key == '3'){
+        const event = new Event('click');
+        threeButton.dispatchEvent(event)
+    }
+    if(key == '4'){
+        const event = new Event('click');
+        fourButton.dispatchEvent(event)
+    }
+    if(key == '5'){
+        const event = new Event('click');
+        fiveButton.dispatchEvent(event)
+    }
+    if(key == '6'){
+        const event = new Event('click');
+        sixButton.dispatchEvent(event)
+    }
+    if(key == '7'){
+        const event = new Event('click');
+        sevenButton.dispatchEvent(event)
+    }
+    if(key == '8'){
+        const event = new Event('click');
+        eightButton.dispatchEvent(event)
+    }
+    if(key == '9'){
+        const event = new Event('click');
+        nineButton.dispatchEvent(event)
+    }
+
+});
