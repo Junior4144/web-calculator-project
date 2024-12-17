@@ -1,7 +1,8 @@
 
 function add(num1, num2){
-    
-    return parseInt(num1) + parseInt(num2);
+    const output = parseInt(num1) + parseInt(num2);;
+
+    return Math.round(output * 100) / 100;
 }
 
 function subtract(num1, num2){
@@ -13,7 +14,11 @@ function multiply(num1, num2){
 }
 
 function divide(num1, num2){
-    return parseInt(num1) / parseInt(num2);
+    const output = parseInt(num1) / parseInt(num2);
+    if (num1 == 0){
+        return "boy what the hell"
+    }
+    return Math.round(output*100)/100;
 }
 
 let firstNumber = null;
@@ -58,6 +63,13 @@ const equalsButton = document.querySelector('.equals-btn');
 const display = document.querySelector('.display');
 const preview = document.querySelector('.preview');
 
+const clearButton = document.querySelector('.clear-btn');
+const delButton = document.querySelector('.del-btn');
+const resetButton = document.querySelector('.reset-btn');
+const interchangeButton = document.querySelector('.interChange-btn');
+const decimalPointButton = document.querySelector('.decimal-btn');
+
+
 const zeroButton = document.querySelector('.zero-btn');
 const oneButton = document.querySelector('.one-btn');
 const twoButton = document.querySelector('.two-btn');
@@ -86,6 +98,36 @@ let secondSelection = true;
 
 let withoutSecond = true;
 let equalsReset = false;
+
+clearButton.addEventListener('click', () => {
+    //clears display
+    display.textContent = '';
+});
+resetButton.addEventListener('click', () => {
+    //resets display/ preview / all variables as if it was new
+    display.textContent = '0';
+    operator = '';
+    firstNumber = null;
+    secondNumber = null;
+    preview.textContent = '';
+    firstNumberSelection = true;
+    operatorSelection = false;
+    secondNumberSelection = false;
+    displaySelection = false;
+    firstSelection = true;
+    secondSelection = true;
+    withoutSecond = true;
+    equalsReset = false;
+});
+delButton.addEventListener('click', () => {
+    //remove one number from display
+    let x = display.textContent;
+    display.textContent = x.substring(0, x.length-1);
+    if(display.textContent == ''){
+        display.textContent = "0"
+    }
+});
+
 
 equalsButton.addEventListener('click', () =>{
     if(firstNumberSelection){
