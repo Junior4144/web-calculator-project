@@ -13,6 +13,7 @@ function multiply(num1, num2){
     return parseInt(num1) * parseInt(num2);
 }
 
+
 function divide(num1, num2){
     const output = parseInt(num1) / parseInt(num2);
     if (num1 == 0){
@@ -719,69 +720,53 @@ allBtn.forEach((current) =>{
 
 
 document.addEventListener('keydown', ({key}) =>{
+    const event = new Event('click');
     if(key == '/'){
-        const event = new Event('click');
         divideButton.dispatchEvent(event)
     }
-
     if(key == 'Backspace' || key == 'Delete'){
-        const event = new Event('click');
         delButton.dispatchEvent(event)
     }
     if(key == '+'){
-        const event = new Event('click');
         addButton.dispatchEvent(event)
     }
     if(key == '-'){
-        const event = new Event('click');
         subtractButton.dispatchEvent(event)
     }
     if(key == '*'){
-        const event = new Event('click');
         multiplyButton.dispatchEvent(event)
     }
     if(key == '.'){
-        const event = new Event('click');
         decimalPointButton.dispatchEvent(event)
     }
     if(key == '0'){
-        const event = new Event('click');
         zeroButton.dispatchEvent(event)
     }
     if(key == '1'){
-        const event = new Event('click');
         oneButton.dispatchEvent(event)
     }
     if(key == '2'){
-        const event = new Event('click');
         twoButton.dispatchEvent(event)
     }
     if(key == '3'){
-        const event = new Event('click');
         threeButton.dispatchEvent(event)
     }
     if(key == '4'){
-        const event = new Event('click');
         fourButton.dispatchEvent(event)
     }
     if(key == '5'){
-        const event = new Event('click');
         fiveButton.dispatchEvent(event)
     }
     if(key == '6'){
-        const event = new Event('click');
         sixButton.dispatchEvent(event)
     }
     if(key == '7'){
-        const event = new Event('click');
         sevenButton.dispatchEvent(event)
     }
     if(key == '8'){
-        const event = new Event('click');
         eightButton.dispatchEvent(event)
     }
     if(key == '9'){
-        const event = new Event('click');
         nineButton.dispatchEvent(event)
     }
 
